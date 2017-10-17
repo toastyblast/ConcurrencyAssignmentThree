@@ -34,5 +34,5 @@ public class Fan extends AbstractActor {
                 .build();
     }
 
-    //Other methods..?
+    //Methods, instead of all the Lambda functions...
 }

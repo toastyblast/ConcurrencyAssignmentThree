@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4062fb1-f047-4d93-982e-6f963898feaa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/application.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/messages/Stop.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/Apl.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../Concurrency Assignment Three/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,8 +30,8 @@
       <file leaf-file-name="Fan.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="31" selection-end-column="18" />
+            <state relative-caret-position="612">
+              <caret line="36" column="53" lean-forward="false" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -44,8 +40,8 @@
       <file leaf-file-name="SalesAgent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+            <state relative-caret-position="612">
+              <caret line="36" column="53" lean-forward="false" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -54,8 +50,8 @@
       <file leaf-file-name="SectionAgent.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+            <state relative-caret-position="612">
+              <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -91,9 +87,9 @@
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/Message.java" />
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/messages/Stop.java" />
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/application.conf" />
-        <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java" />
-        <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java" />
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java" />
+        <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java" />
+        <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java" />
       </list>
     </option>
   </component>
@@ -159,17 +155,6 @@
             <path>
               <item name="Concurrency Assignment Three" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="Concurrency Assignment Three" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="com.typesafe.akka:akka-actor_2.12:2.5.4" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="Concurrency Assignment Three" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="com.typesafe.akka:akka-actor_2.12:2.5.4" type="70bed36:NamedLibraryElementNode" />
-              <item name="akka-actor_2.12-2.5.4.jar" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -319,7 +304,7 @@
       <updated>1508243820780</updated>
       <workItem from="1508243822210" duration="2498000" />
       <workItem from="1508246558689" duration="9000" />
-      <workItem from="1508246906796" duration="975000" />
+      <workItem from="1508246906796" duration="1128000" />
     </task>
     <task id="LOCAL-00001" summary="Base first commit">
       <created>1508244351124</created>
@@ -328,11 +313,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508244351124</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Made classes with basic AKKA construction &amp; handling + added frame for stop message">
+      <created>1508247936194</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1508247936194</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3482000" />
+    <option name="totallyTimeSpent" value="3635000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -375,7 +367,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Base first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Base first commit" />
+    <MESSAGE value="Made classes with basic AKKA construction &amp; handling + added frame for stop message" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made classes with basic AKKA construction &amp; handling + added frame for stop message" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -505,24 +498,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="31" selection-end-column="18" />
+        <state relative-caret-position="612">
+          <caret line="36" column="53" lean-forward="false" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        <state relative-caret-position="612">
+          <caret line="36" column="53" lean-forward="false" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        <state relative-caret-position="612">
+          <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="53" />
           <folding />
         </state>
       </provider>

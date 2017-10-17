@@ -34,5 +34,5 @@ public class SalesAgent extends AbstractActor {
                 .build();
     }
 
-    //Other methods..?
+    //Methods, instead of all the Lambda functions...
 }
