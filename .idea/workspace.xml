@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f4062fb1-f047-4d93-982e-6f963898feaa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../Concurrency Assignment Three/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AplWorld.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AplWorld.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="61" lean-forward="false" selection-start-line="9" selection-start-column="61" selection-end-line="9" selection-end-column="61" />
+            <state relative-caret-position="323">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -47,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SectionAgent.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SectionAgent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="53" />
+            <state relative-caret-position="153">
+              <caret line="9" column="78" lean-forward="false" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -83,13 +80,13 @@
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/SalesAgent.java" />
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/Fan.java" />
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/SectionAgent.java" />
-        <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java" />
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/Message.java" />
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/messages/Stop.java" />
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/application.conf" />
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java" />
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java" />
         <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java" />
+        <option value="$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java" />
       </list>
     </option>
   </component>
@@ -101,10 +98,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="270" />
-    <option name="y" value="-19" />
-    <option name="width" value="1280" />
-    <option name="height" value="777" />
+    <option name="x" value="645" />
+    <option name="y" value="-22" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -124,15 +121,30 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Concurrency Assignment Three" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Concurrency Assignment Three" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Concurrency Assignment Three" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Concurrency Assignment Three" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Concurrency Assignment Three" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Concurrency Assignment Three" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Concurrency Assignment Three" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Concurrency Assignment Three" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="production" type="462c0819:PsiDirectoryNode" />
               <item name="Concurrency Assignment Three" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -160,6 +172,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -304,7 +319,9 @@
       <updated>1508243820780</updated>
       <workItem from="1508243822210" duration="2498000" />
       <workItem from="1508246558689" duration="9000" />
-      <workItem from="1508246906796" duration="1128000" />
+      <workItem from="1508246906796" duration="1183000" />
+      <workItem from="1508326150994" duration="716000" />
+      <workItem from="1508403269846" duration="122000" />
     </task>
     <task id="LOCAL-00001" summary="Base first commit">
       <created>1508244351124</created>
@@ -320,11 +337,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508247936194</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Changed some comments">
+      <created>1508248047455</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1508248047455</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3635000" />
+    <option name="totallyTimeSpent" value="4528000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -342,7 +366,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17697228" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11673774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -368,7 +392,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Base first commit" />
     <MESSAGE value="Made classes with basic AKKA construction &amp; handling + added frame for stop message" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made classes with basic AKKA construction &amp; handling + added frame for stop message" />
+    <MESSAGE value="Changed some comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed some comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -377,20 +402,77 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="53" lean-forward="false" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="53" lean-forward="false" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="78" lean-forward="false" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="61" lean-forward="false" selection-start-line="9" selection-start-column="61" selection-end-line="9" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/Message.java">
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        <state relative-caret-position="612">
+          <caret line="36" column="53" lean-forward="false" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="53" lean-forward="false" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="78" lean-forward="false" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="61" lean-forward="false" selection-start-line="9" selection-start-column="61" selection-end-line="9" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/Message.java" />
     <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -423,14 +505,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/Message.java" />
     <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -456,14 +531,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/ZiggoDomeTicketSystem.java" />
-    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/Message.java" />
     <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/messages/Stop.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -476,7 +544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -484,15 +551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="61" lean-forward="false" selection-start-line="9" selection-start-column="61" selection-end-line="9" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -514,8 +572,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="53" />
+        <state relative-caret-position="153">
+          <caret line="9" column="78" lean-forward="false" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/out/production/Concurrency Assignment Three/Apl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#204#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
