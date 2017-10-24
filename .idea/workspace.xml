@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f4062fb1-f047-4d93-982e-6f963898feaa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/Fan.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SalesAgent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/actors/SectionAgent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/messages/PurchaseConfirmation.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/messages/PurchaseConfirmation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Concurrency Assignment Three/src/messages/TicketReqResponse.java" afterPath="$PROJECT_DIR$/../Concurrency Assignment Three/src/messages/TicketReqResponse.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../Concurrency Assignment Three/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +17,8 @@
       <file leaf-file-name="AplWorld.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state relative-caret-position="260">
+              <caret line="25" column="51" lean-forward="true" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -313,7 +307,7 @@
       <workItem from="1508326150994" duration="716000" />
       <workItem from="1508403269846" duration="971000" />
       <workItem from="1508405649799" duration="29000" />
-      <workItem from="1508844544248" duration="8079000" />
+      <workItem from="1508844544248" duration="8759000" />
     </task>
     <task id="LOCAL-00001" summary="Base first commit">
       <created>1508244351124</created>
@@ -350,11 +344,18 @@
       <option name="project" value="LOCAL" />
       <updated>1508853441724</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Made the whole assignment (without future and become/unbecome system yet), together with Martin while sitting together at school TRY 2">
+      <created>1508853459457</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1508853459457</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13485000" />
+    <option name="totallyTimeSpent" value="14165000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -401,7 +402,8 @@
     <MESSAGE value="Changed some comments" />
     <MESSAGE value="I don't even know what changed" />
     <MESSAGE value="Made the whole assignment (without future and become/unbecome system yet), together with Martin while sitting together at school" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made the whole assignment (without future and become/unbecome system yet), together with Martin while sitting together at school" />
+    <MESSAGE value="Made the whole assignment (without future and become/unbecome system yet), together with Martin while sitting together at school TRY 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the whole assignment (without future and become/unbecome system yet), together with Martin while sitting together at school TRY 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -645,8 +647,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../Concurrency Assignment Three/src/AplWorld.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="260">
+          <caret line="25" column="51" lean-forward="true" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
           <folding />
         </state>
       </provider>
