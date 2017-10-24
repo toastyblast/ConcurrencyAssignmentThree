@@ -17,7 +17,7 @@ public class AplWorld {
     private static final int AMOUNT_OF_SPACES = 10;
     private static final int AMOUNT_OF_FANS = 30;
 
-    //Variables...
+    //Variables go here...
 
     public static void main(String[] args) {
         ActorSystem system = ActorSystem.create("ZiggoDome");
