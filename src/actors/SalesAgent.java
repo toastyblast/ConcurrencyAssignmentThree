@@ -1,22 +1,27 @@
 package actors;
 
 import akka.actor.AbstractActor;
+import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import messages.TicketRequest;
 import messages.Stop;
 
+import java.util.ArrayList;
+
 public class SalesAgent extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
+
+    private ArrayList<ActorRef> sectionAgents;
     //Variables...
 
-    private SalesAgent(/*Stuff a actors.SalesAgent needs*/) {
-        //Constructor...
+    private SalesAgent(ArrayList<ActorRef> sectionAgents) {
+        this.sectionAgents = sectionAgents;
     }
 
-    public static Props prop(/*The same stuff the constructor needs*/) {
-        return Props.create(SalesAgent.class/*, the stuff the constructor needs*/);
+    public static Props prop(ArrayList<ActorRef> sectionAgents) {
+        return Props.create(SalesAgent.class, sectionAgents);
     }
 
     public void preStart() {
@@ -28,7 +33,17 @@ public class SalesAgent extends AbstractActor {
     public Receive createReceive() {
         return receiveBuilder()
                 .match(TicketRequest.class, message -> {
-                    //Get section number, check for which section and send/forward the message on to the right section agent.
+                    int requestedSection = message.getSectionDesired();
+
+                    for (int i = 0; i < sectionAgents.size(); i++) {
+                        //Check for the section manager to contact
+                        if (requestedSection == (i + 1)) {
+                            //Send the request for a ticket to the right section agent.
+                            sectionAgents.get(i).forward(message, getContext());
+
+                            break;
+                        }
+                    }
                 })
                 //Do a .match(class, callback) here, for whatever message it could receive
                 .match(Stop.class, message -> {

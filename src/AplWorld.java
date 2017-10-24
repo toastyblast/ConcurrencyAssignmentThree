@@ -3,9 +3,9 @@ import actors.SalesAgent;
 import actors.SectionAgent;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import akka.actor.Props;
 import akka.routing.RoundRobinPool;
-import akka.routing.Router;
+
+import java.util.ArrayList;
 
 /**
  * Method that is used to run the simulation of Assignment 3 for Saxion's Concurrency - Method Passing with AKKA.
@@ -14,20 +14,24 @@ import akka.routing.Router;
 public class AplWorld {
     private static final int AMOUNT_OF_SALES_AGENTS = 5;
     private static final int AMOUNT_OF_SECTIONS = 7;
-    private static final int AMOUNT_OF_FANS = 25;
+    private static final int AMOUNT_OF_SPACES = 10;
+    private static final int AMOUNT_OF_FANS = 30;
 
     //Variables...
 
     public static void main(String[] args) {
         ActorSystem system = ActorSystem.create("ZiggoDome");
 
-        //Makes a router for sales agents, which fans contact.
-        ActorRef ticketAgency = system.actorOf(new RoundRobinPool(AMOUNT_OF_SALES_AGENTS).props(SalesAgent.prop()), "ticketAgency");
-
         //Create the section agents...
+        ArrayList<ActorRef> sectionAgents = new ArrayList<>();
         for (int section = 1; section < AMOUNT_OF_SECTIONS; section++) {
-            ActorRef sectionAgent = system.actorOf(SectionAgent.prop(section), "SecAg-" + section);
+            ActorRef sectionAgent = system.actorOf(SectionAgent.prop(section, AMOUNT_OF_SPACES), "SecAg-" + section);
+
+            sectionAgents.add(sectionAgent);
         }
+
+        //Makes a ROUTER for sales agents, which fans contact.
+        ActorRef ticketAgency = system.actorOf(new RoundRobinPool(AMOUNT_OF_SALES_AGENTS).props(SalesAgent.prop(sectionAgents)), "ticketAgency");
 
         //Create the fans...
 //        List<ActorRef> fans = new ArrayList<>();
@@ -38,9 +42,9 @@ public class AplWorld {
 //            fans.add(fan);
         }
 
-        //TODO: Replace this trycatch with a future loop.
+        //TODO: Replace this try/catch with a future loop.
         try {
-            Thread.sleep(60000);
+            Thread.sleep(10000);
         } catch (InterruptedException ie) {/* Don't throw anything or you won't reach system.terminate(). */}
 
         //Always terminate the system after it's done! Actors stay alive, otherwise.
