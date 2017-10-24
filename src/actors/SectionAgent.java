@@ -8,14 +8,14 @@ import messages.Stop;
 
 public class SectionAgent extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
-    //Variables...
+    private int sectionToManage;
 
-    private SectionAgent(/*Stuff a actors.SectionAgent needs*/) {
-        //Constructor...
+    private SectionAgent(int sectionToManage) {
+        this.sectionToManage = sectionToManage;
     }
 
-    public static Props prop(/*The same stuff the constructor needs*/) {
-        return Props.create(SectionAgent.class/*, the stuff the constructor needs*/);
+    public static Props prop(int sectionToManage) {
+        return Props.create(SectionAgent.class, sectionToManage);
     }
 
     public void preStart() {

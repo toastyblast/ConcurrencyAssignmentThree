@@ -4,6 +4,7 @@ import akka.actor.AbstractActor;
 import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
+import messages.TicketRequest;
 import messages.Stop;
 
 public class SalesAgent extends AbstractActor {
@@ -26,6 +27,9 @@ public class SalesAgent extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
+                .match(TicketRequest.class, message -> {
+                    //Get section number, check for which section and send/forward the message on to the right section agent.
+                })
                 //Do a .match(class, callback) here, for whatever message it could receive
                 .match(Stop.class, message -> {
                     /*Handling for the stop message.*/
