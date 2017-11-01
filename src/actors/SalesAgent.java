@@ -5,6 +5,8 @@ import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
+import messages.PurchaseConfirmation;
+import messages.TicketReqResponse;
 import messages.TicketRequest;
 import messages.Stop;
 
@@ -39,11 +41,27 @@ public class SalesAgent extends AbstractActor {
                         //Check for the section manager to contact
                         if (requestedSection == (i + 1)) {
                             //Send the request for a ticket to the right section agent.
-                            sectionAgents.get(i).forward(message, getContext());
+
+                            //Put reference to the fan, so to sales agent can remember where to return the message.
+                            message.setActorRef(getSender());
+                            sectionAgents.get(i).tell(message, getSelf());
 
                             break;
                         }
                     }
+                })
+                .match(TicketReqResponse.class, message ->{
+                    //Get the actor reference and save it.
+                    ActorRef fan = message.getActorRef();
+                    //Put reference to the section agent, so the sales agent can remember where to return the message.
+                    message.setActorRef(getSender());
+                    //Return the message to the actor.
+                    fan.tell(message, getSelf());
+                })
+                .match(PurchaseConfirmation.class, message ->{
+                    ActorRef sectionAgent = message.getSectionAgent();
+                    message.setSectionAgent(getSender());
+                    sectionAgent.tell(message, getSelf());
                 })
                 //Do a .match(class, callback) here, for whatever message it could receive
                 .match(Stop.class, message -> {

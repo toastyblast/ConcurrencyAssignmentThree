@@ -1,12 +1,16 @@
 package messages;
 
+import akka.actor.ActorRef;
+
 public class TicketReqResponse {
     private boolean reservationMade;
     private int purchaseID;
+    private ActorRef actorRef;
 
-    public TicketReqResponse(boolean reservationMade, int purchaseID) {
+    public TicketReqResponse(boolean reservationMade, int purchaseID, ActorRef actorRef) {
         this.reservationMade = reservationMade;
         this.purchaseID = purchaseID;
+        this.actorRef = actorRef;
     }
 
     public boolean isReservationMade() {
@@ -15,5 +19,13 @@ public class TicketReqResponse {
 
     public int getPurchaseID() {
         return purchaseID;
+    }
+
+    public ActorRef getActorRef() {
+        return actorRef;
+    }
+
+    public void setActorRef(ActorRef actorRef) {
+        this.actorRef = actorRef;
     }
 }
