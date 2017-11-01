@@ -77,7 +77,7 @@ public class SectionAgent extends AbstractActor {
                 })
                 //Do a .match(class, callback) here, for whatever message it could receive
                 .match(Stop.class, message -> {
-                    /*Handling for the stop message.*/
+                    /*TODO?: Handling for the stop message.*/
                 })
                 .matchAny(object -> log.info("SECTION AGENT - Received unknown message from " + getSender(), object.toString()))
                 .build();

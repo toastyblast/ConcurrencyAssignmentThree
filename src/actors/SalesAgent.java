@@ -15,11 +15,22 @@ import java.util.ArrayList;
 public class SalesAgent extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
+    private Receive routingBehaviour;
+
     private ArrayList<ActorRef> sectionAgents;
     //Variables...
 
     private SalesAgent(ArrayList<ActorRef> sectionAgents) {
         this.sectionAgents = sectionAgents;
+
+        routingBehaviour = receiveBuilder()
+                //TODO: Do matches for all proper messages here, but instead, send them to the router you created.
+                //Do a .match(class, callback) here, for whatever message it could receive
+                .match(Stop.class, message -> {
+                    /*TODO: Handling for the stop message.*/
+                })
+                .matchAny(object -> log.info("SECTION AGENT (ROUTER MODE) - Received unknown message from " + getSender(), object.toString()))
+                .build();
     }
 
     public static Props prop(ArrayList<ActorRef> sectionAgents) {
@@ -65,7 +76,7 @@ public class SalesAgent extends AbstractActor {
                 })
                 //Do a .match(class, callback) here, for whatever message it could receive
                 .match(Stop.class, message -> {
-                    /*Handling for the stop message.*/
+                    /*TODO?: Handling for the stop message.*/
                 })
                 .matchAny(object -> log.info("SECTION AGENT - Received unknown message from " + getSender(), object.toString()))
                 .build();

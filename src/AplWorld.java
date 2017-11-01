@@ -30,7 +30,7 @@ public class AplWorld {
             sectionAgents.add(sectionAgent);
         }
 
-        //Makes a ROUTER for sales agents, which fans contact.
+        //Makes a ROUTER for sales agents, which fans contact. TODO: replace with one sales agent as soon as become/unbecome is in the program.
         ActorRef ticketAgency = system.actorOf(new RoundRobinPool(AMOUNT_OF_SALES_AGENTS).props(SalesAgent.prop(sectionAgents)), "ticketAgency");
 
         //Create the fans...
