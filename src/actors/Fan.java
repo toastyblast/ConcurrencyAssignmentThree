@@ -49,11 +49,11 @@ public class Fan extends AbstractActor {
                         if (decideToBuy <= 70) {
                             //The user decides that they want to buy the ticket(s) (70% chance)
                             log.info("FAN - I decided to buy the tickets I requested.");
-                            getSender().tell(new PurchaseConfirmation(true, myPurchaseID), getSelf());
+                            getSender().tell(new PurchaseConfirmation(true, myPurchaseID, message.getActorRef()), getSelf());
                         } else {
                             //The user decides that they do NOT want to buy the ticket(s) (30% chance)
                             log.info("FAN - I decided NOT to buy the tickets I requested.");
-                            getSender().tell(new PurchaseConfirmation(false, myPurchaseID), getSelf());
+                            getSender().tell(new PurchaseConfirmation(false, myPurchaseID, message.getActorRef()), getSelf());
                         }
                     } else {
                         //The amount of tickets requested is not available, so stop, as you have nothing more to do.
