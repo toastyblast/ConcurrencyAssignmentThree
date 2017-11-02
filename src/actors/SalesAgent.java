@@ -48,17 +48,15 @@ public class SalesAgent extends AbstractActor {
                 .match(TicketRequest.class, message -> {
                     int requestedSection = message.getSectionDesired();
 
-                    for (int i = 0; i < sectionAgents.size(); i++) {
-                        //Check for the section manager to contact
-                        if (requestedSection == (i + 1)) {
-                            //Send the request for a ticket to the right section agent.
+                    if (requestedSection >= 1 && requestedSection <= sectionAgents.size()) {
+                        //Send the request for a ticket to the right section agent.
 
-                            //Forward the message to the section agent, so that the SecA can put the fan in the response
-                            // so that the sales agent then knows where to send the response back to.
-                            sectionAgents.get(i).forward(message, getContext());
-
-                            break;
-                        }
+                        //Forward the message to the section agent, so that the SecA can put the fan in the response
+                        // so that the sales agent then knows where to send the response back to.
+                        sectionAgents.get((requestedSection - 1)).forward(message, getContext());
+                    } else {
+                        //This means the Fan is requesting a section that does not exist, so just stop them.
+                        getSender().tell(new Stop(null), getSelf());
                     }
                 })
                 .match(TicketReqResponse.class, message -> {
