@@ -76,7 +76,8 @@ public class SalesAgent extends AbstractActor {
                 })
                 //Do a .match(class, callback) here, for whatever message it could receive
                 .match(Stop.class, message -> {
-                    /*TODO?: Handling for the stop message.*/
+//                    log.info("Person who should stop " + message.getFan() + " Stopped by: " +getSender());
+                    message.getFan().tell(new Stop(null), getSelf());
                 })
                 .matchAny(object -> log.info("SECTION AGENT - Received unknown message from " + getSender(), object.toString()))
                 .build();

@@ -17,11 +17,23 @@ public class SectionAgent extends AbstractActor {
     private int sectionToManage, amountOfSpaces;
     private ArrayList<Integer> sectionPurchaseHistory = new ArrayList<>();
 
+    private Receive blockRequests;
+
     private SectionAgent(int sectionToManage, int amountOfSpaces) {
         this.sectionToManage = sectionToManage;
         this.amountOfSpaces = amountOfSpaces;
 
-        //TODO: Create a become/unbecome where if the section has no free spaces anymore, the manager does a matchall only and blocks all requests.
+        //TODO: Create a become/unbecome where if the section has no free spaces anymore, the manager does a matchany only and blocks all requests.
+        //This behaviour is triggered when all the spaces of this agent's section has been taken. It matches any messages and tells it that it can't finish the task.
+        blockRequests = receiveBuilder()
+                //Do a .match(class, callback) here, for whatever message it could receive
+                .match(TicketRequest.class, message -> {
+                    //...
+                })
+                .match(Stop.class, message -> {
+                    /*TODO?: Handling for the stop message.*/
+                })
+                .build();
     }
 
     public static Props prop(int sectionToManage, int amountOfSpaces) {
@@ -72,10 +84,12 @@ public class SectionAgent extends AbstractActor {
                         amountOfSpaces += amountOfTicketsReserved;
                     } else {
                         log.info("Amount of tickets: " + amountOfTicketsReserved + " RESERVED BY: " + message.getSectionAgent());
+
+                        //TODO: become
                     }
 
                     //And as the fan now have their tickets, we can tell them to stop living.
-                    getSender().tell(new Stop(), getSelf());
+                    getSender().tell(new Stop(message.getSectionAgent()), getSelf());
                 })
                 //Do a .match(class, callback) here, for whatever message it could receive
                 .match(Stop.class, message -> {

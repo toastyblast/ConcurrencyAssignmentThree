@@ -58,12 +58,12 @@ public class Fan extends AbstractActor {
                     } else {
                         //The amount of tickets requested is not available, so stop, as you have nothing more to do.
                         log.info("FAN - The amount of tickets I requested are not available, so I stop living.");
-                        getSelf().tell(new Stop(), getSelf());
+                        getSelf().tell(new Stop(null), getSelf());
                     }
                 })
                 //Do a .match(class, callback) here, for whatever message it could receive
                 .match(Stop.class, message -> {
-//                    log.debug("FAN - I was told to stop by " + getSender(), message.toString());
+                    log.info("FAN - I was told to stop by " + getSender(), message.toString());
 
                     getContext().stop(getSelf());
                 })

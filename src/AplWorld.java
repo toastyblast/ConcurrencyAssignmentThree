@@ -3,7 +3,9 @@ import actors.SalesAgent;
 import actors.SectionAgent;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import akka.routing.DefaultResizer;
 import akka.routing.RoundRobinPool;
+import akka.routing.SmallestMailboxPool;
 
 import java.util.ArrayList;
 
@@ -12,7 +14,8 @@ import java.util.ArrayList;
  */
 
 public class AplWorld {
-    private static final int AMOUNT_OF_SALES_AGENTS = 5;
+    private static final int MIN_AMOUNT_OF_SALES_AGENTS = 2;
+    private static final int MAX_AMOUNT_OF_SALES_AGENTS = 15;
     private static final int AMOUNT_OF_SECTIONS = 7;
     private static final int AMOUNT_OF_SPACES = 10;
     private static final int AMOUNT_OF_FANS = 30;
@@ -30,8 +33,9 @@ public class AplWorld {
             sectionAgents.add(sectionAgent);
         }
 
-        //Makes a ROUTER for sales agents, which fans contact. TODO: replace with a resizer with a smallest-mailbox logic
-        ActorRef ticketAgency = system.actorOf(new RoundRobinPool(AMOUNT_OF_SALES_AGENTS).props(SalesAgent.prop(sectionAgents)), "ticketAgency");
+        //Make a SMALLEST MAILBOX LOGIC RESIZER for sales agents, which fans contact.
+        DefaultResizer resizer = new DefaultResizer(MIN_AMOUNT_OF_SALES_AGENTS, MAX_AMOUNT_OF_SALES_AGENTS);
+        ActorRef ticketAgency = system.actorOf(new SmallestMailboxPool(MIN_AMOUNT_OF_SALES_AGENTS).withResizer(resizer).props(SalesAgent.prop(sectionAgents)), "ticketAgency");
 
         //Create the fans...
 //        List<ActorRef> fans = new ArrayList<>();
