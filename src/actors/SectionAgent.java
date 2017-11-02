@@ -20,6 +20,8 @@ public class SectionAgent extends AbstractActor {
     private SectionAgent(int sectionToManage, int amountOfSpaces) {
         this.sectionToManage = sectionToManage;
         this.amountOfSpaces = amountOfSpaces;
+
+        //TODO: Create a become/unbecome where if the section has no free spaces anymore, the manager does a matchall only and blocks all requests.
     }
 
     public static Props prop(int sectionToManage, int amountOfSpaces) {

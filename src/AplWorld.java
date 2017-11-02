@@ -30,7 +30,7 @@ public class AplWorld {
             sectionAgents.add(sectionAgent);
         }
 
-        //Makes a ROUTER for sales agents, which fans contact. TODO: replace with one sales agent as soon as become/unbecome is in the program.
+        //Makes a ROUTER for sales agents, which fans contact. TODO: replace with a resizer with a smallest-mailbox logic
         ActorRef ticketAgency = system.actorOf(new RoundRobinPool(AMOUNT_OF_SALES_AGENTS).props(SalesAgent.prop(sectionAgents)), "ticketAgency");
 
         //Create the fans...
@@ -42,7 +42,7 @@ public class AplWorld {
 //            fans.add(fan);
         }
 
-        //TODO: Replace this try/catch with a future loop.
+        //TODO - OPTIONAl: Replace this try/catch with a future loop.
         try {
             Thread.sleep(10000);
         } catch (InterruptedException ie) {/* Don't throw anything or you won't reach system.terminate(). */}
