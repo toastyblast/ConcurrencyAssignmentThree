@@ -51,11 +51,11 @@ public class SectionAgent extends AbstractActor {
                 .match(TicketRequest.class, message -> {
                     int requestedTickets = message.getNumberOfTickets();
                     //The reference to the fan, keep it so the sales agent can know where to return the message.
-                    ActorRef actorRef = message.getActorRef();
+                    ActorRef fanForSalesToSendBackTo = getSender();
 
 //                    log.debug("SECTION AGENT - GOT FORWARDED MESSAGE FROM: " + getSender(), message.toString());
 
-                    log.info("SECTION AGENT - Got request from " + actorRef + " and I have so many seats left (before latest purchase request): " + amountOfSpaces);
+                    log.info("SECTION AGENT - Got request from " + fanForSalesToSendBackTo + " and I have so many seats left (before latest purchase request): " + amountOfSpaces);
 
                     if (amountOfSpaces >= requestedTickets) {
                         //Set a "Reservation" (Basically already bought).
@@ -65,13 +65,13 @@ public class SectionAgent extends AbstractActor {
                         //Get the index (or "purchase ID") of the reservation just made, aka get the index of the last item in the ArrayList.
                         int purchaseID = sectionPurchaseHistory.indexOf(sectionPurchaseHistory.get((sectionPurchaseHistory.size() - 1)));
 
-                        getSender().tell(new TicketReqResponse(true, purchaseID, actorRef), getSelf());
+                        getSender().tell(new TicketReqResponse(true, purchaseID, fanForSalesToSendBackTo), getSelf());
                     } else {
                         //Send message that this is not possible.
-                        getSender().tell(new TicketReqResponse(false, -1, actorRef), getSelf());
+                        getSender().tell(new TicketReqResponse(false, -1, fanForSalesToSendBackTo), getSelf());
                     }
 
-                    log.info("SECTION AGENT - I have so many seats left (after latest purchase request): " + amountOfSpaces + " RESERVED BY: " + actorRef);
+                    log.info("SECTION AGENT - I have so many seats left (after latest purchase request): " + amountOfSpaces + " RESERVED BY: " + fanForSalesToSendBackTo);
                 })
                 .match(PurchaseConfirmation.class, message -> {
                     int amountOfTicketsReserved = sectionPurchaseHistory.get(message.getPurchaseID());

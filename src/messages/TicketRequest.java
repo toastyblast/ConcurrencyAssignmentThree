@@ -1,11 +1,8 @@
 package messages;
 
-import akka.actor.ActorRef;
-
 public class TicketRequest {
-    private int numberOfTickets;
-    private int sectionDesired;
-    private ActorRef actorRef;
+    private final int numberOfTickets;
+    private final int sectionDesired;
 
     public TicketRequest(int numberOfTickets, int sectionDesired) {
         this.numberOfTickets = numberOfTickets;
@@ -18,13 +15,5 @@ public class TicketRequest {
 
     public int getSectionDesired() {
         return sectionDesired;
-    }
-
-    public void setActorRef(ActorRef actorRef) {
-        this.actorRef = actorRef;
-    }
-
-    public ActorRef getActorRef() {
-        return actorRef;
     }
 }

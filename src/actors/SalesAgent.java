@@ -24,7 +24,7 @@ public class SalesAgent extends AbstractActor {
         this.sectionAgents = sectionAgents;
 
         routingBehaviour = receiveBuilder()
-                //TODO: Do matches for all proper messages here, but instead, send them to the router you created.
+                //TODO - WAIT FOR RESPONSE FROM TEACHER: Do matches for all proper messages here, but instead, send them to the router you created.
                 //Do a .match(class, callback) here, for whatever message it could receive
                 .match(Stop.class, message -> {
                     /*TODO: Handling for the stop message.*/
@@ -53,15 +53,15 @@ public class SalesAgent extends AbstractActor {
                         if (requestedSection == (i + 1)) {
                             //Send the request for a ticket to the right section agent.
 
-                            //Put reference to the fan, so to sales agent can remember where to return the message.
-                            message.setActorRef(getSender());
-                            sectionAgents.get(i).tell(message, getSelf());
+                            //Forward the message to the section agent, so that the SecA can put the fan in the response
+                            // so that the sales agent then knows where to send the response back to.
+                            sectionAgents.get(i).forward(message, getContext());
 
                             break;
                         }
                     }
                 })
-                .match(TicketReqResponse.class, message ->{
+                .match(TicketReqResponse.class, message -> {
                     //Get the actor reference and save it.
                     ActorRef fan = message.getActorRef();
                     //Put reference to the section agent, so the sales agent can remember where to return the message.
@@ -69,7 +69,7 @@ public class SalesAgent extends AbstractActor {
                     //Return the message to the actor.
                     fan.tell(message, getSelf());
                 })
-                .match(PurchaseConfirmation.class, message ->{
+                .match(PurchaseConfirmation.class, message -> {
                     ActorRef sectionAgent = message.getSectionAgent();
                     message.setSectionAgent(getSender());
                     sectionAgent.tell(message, getSelf());
