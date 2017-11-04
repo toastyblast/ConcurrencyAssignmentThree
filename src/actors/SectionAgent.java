@@ -5,16 +5,14 @@ import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
-import messages.PurchaseConfirmation;
-import messages.Stop;
-import messages.TicketReqResponse;
-import messages.TicketRequest;
+import messages.*;
 
 import java.util.ArrayList;
 
 public class SectionAgent extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
-    private int sectionToManage, amountOfSpaces, amountOfSpacesAfterConfirmation;
+    private final int sectionToManage;
+    private int amountOfSpaces, amountOfSpacesAfterConfirmation;
     private ArrayList<Integer> sectionPurchaseHistory = new ArrayList<>();
 
     private Receive blockRequests;
@@ -28,17 +26,17 @@ public class SectionAgent extends AbstractActor {
         // It matches any messages and tells it that it can't finish the task.
         blockRequests = receiveBuilder()
                 .match(TicketRequest.class, message -> {
-                    log.info("TR MESSAGE SECTION AGENT BLOCK - I told to stop living to " + getSender() + " Tickets left: " + amountOfSpacesAfterConfirmation);
+                    log.info("TR MESSAGE SECTION AGENT BLOCK - I told " + getSender() + " to STOP. Tickets left: " + amountOfSpacesAfterConfirmation);
                     getSender().tell(new Stop(getSender()),getSelf());
                 })
                 .match(PurchaseConfirmation.class, message -> {
-                    log.info("PC MESSAGE SECTION AGENT BLOCK - I told to stop living to " + message.getSectionAgent());
+                    log.info("PC MESSAGE SECTION AGENT BLOCK - I told " + message.getSectionAgent() + " to STOP.");
                     getSender().tell(new Stop(message.getSectionAgent()), getSelf());
                 })
                 .match(Stop.class, message -> {
                     /*TODO?: Handling for the stop message.*/
                 })
-                .matchAny(o -> log.info("I don't have tickets... leave me alone."))
+                .matchAny(o -> log.info("I don't have any tickets left... Leave me alone."))
                 .build();
     }
 
@@ -77,8 +75,18 @@ public class SectionAgent extends AbstractActor {
                         int purchaseID = sectionPurchaseHistory.indexOf(sectionPurchaseHistory.get((sectionPurchaseHistory.size() - 1)));
 
                         getSender().tell(new TicketReqResponse(true, purchaseID, fanForSalesToSendBackTo), getSelf());
+                    } else if (amountOfSpaces < requestedTickets && amountOfSpaces > 0) {
+                        //I still have tickets left, just not the amount the fan wants. Offer them this smaller amount.
+                        sectionPurchaseHistory.add(amountOfSpaces);
+                        //Since you're offering your last tickets, set your amount of spaces to zero.
+                        int tempAmountOfSpaces = amountOfSpaces;
+                        amountOfSpaces = 0;
+                        //Get the index (or "purchase ID") of the reservation just made, aka get the index of the last item in the ArrayList.
+                        int purchaseID = sectionPurchaseHistory.indexOf(sectionPurchaseHistory.get((sectionPurchaseHistory.size() - 1)));
+
+                        getSender().tell(new TicketReqOffer(purchaseID, tempAmountOfSpaces, fanForSalesToSendBackTo), getSelf());
                     } else {
-                        //Send message that this is not possible.
+                        //Send message that this is not possible, as I have no tickets left.
                         getSender().tell(new TicketReqResponse(false, -1, fanForSalesToSendBackTo), getSelf());
                     }
 
@@ -107,17 +115,10 @@ public class SectionAgent extends AbstractActor {
                     //And as the fan now have their tickets, we can tell them to stop living.
                     getSender().tell(new Stop(message.getSectionAgent()), getSelf());
                 })
-                //Do a .match(class, callback) here, for whatever message it could receive
                 .match(Stop.class, message -> {
                     /*TODO?: Handling for the stop message.*/
                 })
                 .matchAny(object -> log.info("SECTION AGENT - Received unknown message from " + getSender(), object.toString()))
                 .build();
     }
-
-    public int getSectionToManage() {
-        return sectionToManage;
-    }
-
-    //Methods, instead of all the Lambda functions...
 }

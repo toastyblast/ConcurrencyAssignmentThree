@@ -5,32 +5,17 @@ import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
-import messages.PurchaseConfirmation;
-import messages.TicketReqResponse;
-import messages.TicketRequest;
-import messages.Stop;
+import messages.*;
 
 import java.util.ArrayList;
 
 public class SalesAgent extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
-    private Receive routingBehaviour;
-
-    private ArrayList<ActorRef> sectionAgents;
-    //Variables...
+    private final ArrayList<ActorRef> sectionAgents;
 
     private SalesAgent(ArrayList<ActorRef> sectionAgents) {
         this.sectionAgents = sectionAgents;
-
-        routingBehaviour = receiveBuilder()
-                //TODO - WAIT FOR RESPONSE FROM TEACHER: Do matches for all proper messages here, but instead, send them to the router you created.
-                //Do a .match(class, callback) here, for whatever message it could receive
-                .match(Stop.class, message -> {
-                    /*TODO: Handling for the stop message.*/
-                })
-                .matchAny(object -> log.info("SECTION AGENT (ROUTER MODE) - Received unknown message from " + getSender(), object.toString()))
-                .build();
     }
 
     public static Props prop(ArrayList<ActorRef> sectionAgents) {
@@ -67,19 +52,24 @@ public class SalesAgent extends AbstractActor {
                     //Return the message to the actor.
                     fan.tell(message, getSelf());
                 })
+                .match(TicketReqOffer.class, message -> {
+                    ActorRef fan = message.getActorRef();
+                    fan.forward(message, getContext());
+                })
                 .match(PurchaseConfirmation.class, message -> {
+                    //This means the Fan wants to let us and the section agent know if they decided to purchase the
+                    // tickets or not. Route this to the section agent so they can handle that.
                     ActorRef sectionAgent = message.getSectionAgent();
                     message.setSectionAgent(getSender());
                     sectionAgent.tell(message, getSelf());
                 })
-                //Do a .match(class, callback) here, for whatever message it could receive
                 .match(Stop.class, message -> {
+                    //This means the section agent told us that the last request has been finished and that the Fan can
+                    // be told to stop now, since they have their tickets.
 //                    log.info("Person who should stop " + message.getFan() + " Stopped by: " +getSender());
                     message.getFan().tell(new Stop(null), getSelf());
                 })
                 .matchAny(object -> log.info("SECTION AGENT - Received unknown message from " + getSender(), object.toString()))
                 .build();
     }
-
-    //Methods, instead of all the Lambda functions...
 }
