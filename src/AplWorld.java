@@ -9,7 +9,12 @@ import akka.routing.SmallestMailboxPool;
 import java.util.ArrayList;
 
 /**
+ * @author Yoran Kerbusch & Martin Slavov (Y2Q1 Concurrency Group 21 - 2017/2018)
  * Method that is used to run the simulation of Assignment 3 for Saxion's Concurrency - Method Passing with AKKA.
+ *
+ * !!! PLEASE NOTE !!!
+ * The team is not responsible for any errors caused by user input being too small (less than 1 in any case) or being
+ * too high for a computer to process. Please think reasonably when setting values during your tests.
  */
 public class AplWorld {
     private static final int MIN_AMOUNT_OF_SALES_AGENTS = 2;
@@ -35,7 +40,7 @@ public class AplWorld {
         ActorRef ticketAgency = system.actorOf(new SmallestMailboxPool(MIN_AMOUNT_OF_SALES_AGENTS).withResizer(resizer).props(SalesAgent.prop(sectionAgents)), "ticketAgency");
 
         //Create the fans...
-        for (int i = 1; i < AMOUNT_OF_FANS; i++) {
+        for (int i = 1; i < (AMOUNT_OF_FANS + 1); i++) {
             int sectionToDesire = (int) (Math.random() * AMOUNT_OF_SECTIONS) + 1;
 
             system.actorOf(Fan.prop(sectionToDesire, ticketAgency), "Fan-" + i);
