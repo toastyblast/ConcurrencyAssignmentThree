@@ -3,8 +3,8 @@ package messages;
 import akka.actor.ActorRef;
 
 public class TicketReqResponse {
-    private boolean reservationMade;
-    private int purchaseID;
+    private final boolean reservationMade;
+    private final int purchaseID;
     private ActorRef actorRef;
 
     public TicketReqResponse(boolean reservationMade, int purchaseID, ActorRef actorRef) {

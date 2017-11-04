@@ -16,10 +16,8 @@ public class Fan extends AbstractActor {
     private static final int MIN_AMOUNT_OF_TICKETS = 1;
 
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
-    private int desiredAmountOfTickets = MIN_AMOUNT_OF_TICKETS;
-    private int desiredSection;
-    private ActorRef ticketAgency;
-    //Variables...
+    private final int desiredAmountOfTickets, desiredSection;
+    private final ActorRef ticketAgency;
 
     private Fan(int desiredSection, ActorRef ticketAgency) {
         desiredAmountOfTickets = (int) (Math.random() * MAX_AMOUNT_OF_TICKETS) + MIN_AMOUNT_OF_TICKETS;
