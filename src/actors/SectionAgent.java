@@ -24,15 +24,15 @@ public class SectionAgent extends AbstractActor {
         this.amountOfSpaces = amountOfSpaces;
         this.amountOfSpacesAfterConfirmation = amountOfSpaces;
 
-        //This behaviour is triggered when all the spaces of this agent's section has been taken. It matches any messages and tells it that it can't finish the task.
+        //This behaviour is triggered when all the spaces of this agent's section has been taken.
+        // It matches any messages and tells it that it can't finish the task.
         blockRequests = receiveBuilder()
-                //Do a .match(class, callback) here, for whatever message it could receive
                 .match(TicketRequest.class, message -> {
-                    log.info("TR SECTION AGENT BLOCK- I told to stop living to " + getSender() + " Tickets left: " + amountOfSpacesAfterConfirmation);
+                    log.info("TR MESSAGE SECTION AGENT BLOCK - I told to stop living to " + getSender() + " Tickets left: " + amountOfSpacesAfterConfirmation);
                     getSender().tell(new Stop(getSender()),getSelf());
                 })
                 .match(PurchaseConfirmation.class, message -> {
-                    log.info("PC SECTION AGENT BLOCK- I told to stop living to " + message.getSectionAgent());
+                    log.info("PC MESSAGE SECTION AGENT BLOCK - I told to stop living to " + message.getSectionAgent());
                     getSender().tell(new Stop(message.getSectionAgent()), getSelf());
                 })
                 .match(Stop.class, message -> {
