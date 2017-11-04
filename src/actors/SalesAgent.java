@@ -62,15 +62,20 @@ public class SalesAgent extends AbstractActor {
                 .match(TicketReqResponse.class, message -> {
                     //Get the actor reference and save it.
                     ActorRef fan = message.getActorRef();
-                    //Put reference to the section agent, so the sales agent can remember where to return the message.
-                    message.setActorRef(getSender());
+                    //Get the information for the new message.
+                    boolean isReservation = message.isReservationMade();
+                    int purchaseID = message.getPurchaseID();
                     //Return the message to the actor.
-                    fan.tell(message, getSelf());
+                    fan.tell(new TicketReqResponse(isReservation, purchaseID, getSender()), getSelf());
                 })
                 .match(PurchaseConfirmation.class, message -> {
+                    //Get the actor reference and save it.
                     ActorRef sectionAgent = message.getSectionAgent();
-                    message.setSectionAgent(getSender());
-                    sectionAgent.tell(message, getSelf());
+                    //Get the information for the new message.
+                    boolean isConfirmation = message.isFanWantsToBuy();
+                    int purchaseID = message.getPurchaseID();
+                    //Return the message to the actor.
+                    sectionAgent.tell(new PurchaseConfirmation(isConfirmation, purchaseID, getSender()), getSelf());
                 })
                 //Do a .match(class, callback) here, for whatever message it could receive
                 .match(Stop.class, message -> {
