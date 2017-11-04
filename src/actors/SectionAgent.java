@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class SectionAgent extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
-    private int sectionToManage, amountOfSpaces;
+    private int sectionToManage, amountOfSpaces, amountOfSpacesAfterConfirmation;
     private ArrayList<Integer> sectionPurchaseHistory = new ArrayList<>();
 
     private Receive blockRequests;
@@ -22,22 +22,33 @@ public class SectionAgent extends AbstractActor {
     private SectionAgent(int sectionToManage, int amountOfSpaces) {
         this.sectionToManage = sectionToManage;
         this.amountOfSpaces = amountOfSpaces;
+        this.amountOfSpacesAfterConfirmation = amountOfSpaces;
 
-        //TODO: Create a become/unbecome where if the section has no free spaces anymore, the manager does a matchany only and blocks all requests.
         //This behaviour is triggered when all the spaces of this agent's section has been taken. It matches any messages and tells it that it can't finish the task.
         blockRequests = receiveBuilder()
                 //Do a .match(class, callback) here, for whatever message it could receive
                 .match(TicketRequest.class, message -> {
-                    //...
+                    log.info("TR SECTION AGENT BLOCK- I told to stop living to " + getSender() + " Tickets left: " + amountOfSpacesAfterConfirmation);
+                    getSender().tell(new Stop(getSender()),getSelf());
+                })
+                .match(PurchaseConfirmation.class, message -> {
+                    log.info("PC SECTION AGENT BLOCK- I told to stop living to " + message.getSectionAgent());
+                    getSender().tell(new Stop(message.getSectionAgent()), getSelf());
                 })
                 .match(Stop.class, message -> {
                     /*TODO?: Handling for the stop message.*/
                 })
+                .matchAny(o -> log.info("I don't have tickets... leave me alone."))
                 .build();
     }
 
     public static Props prop(int sectionToManage, int amountOfSpaces) {
         return Props.create(SectionAgent.class, sectionToManage, amountOfSpaces);
+    }
+
+    @Override
+    public void postStop() throws Exception {
+        log.info(getSelf() + " has " + amountOfSpaces);
     }
 
     public void preStart() {
@@ -83,9 +94,14 @@ public class SectionAgent extends AbstractActor {
 
                         amountOfSpaces += amountOfTicketsReserved;
                     } else {
-                        log.info("Amount of tickets: " + amountOfTicketsReserved + " RESERVED BY: " + message.getSectionAgent());
+                        amountOfSpacesAfterConfirmation -= amountOfTicketsReserved;
+                        log.info("Amount of tickets: " + amountOfTicketsReserved + " RESERVED BY: " + message.getSectionAgent() + " Tickets left: " + amountOfSpacesAfterConfirmation);
 
-                        //TODO: become
+                        //After all of the RESERVATIONS are confirmed and there are no more spaces left the section
+                        //agent becomes, so he can block all of the coming requests.
+                        if (amountOfSpacesAfterConfirmation == 0){
+                            getContext().become(blockRequests);
+                        }
                     }
 
                     //And as the fan now have their tickets, we can tell them to stop living.
