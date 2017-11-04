@@ -3,14 +3,14 @@ package messages;
 import akka.actor.ActorRef;
 
 public class PurchaseConfirmation {
-    private boolean fanWantsToBuy;
-    private int purchaseID;
-    private ActorRef sectionAgent;
+    private final boolean fanWantsToBuy;
+    private final int purchaseID;
+    private final ActorRef personInvolvedWithPurchase;
 
-    public PurchaseConfirmation(boolean fanWantsToBuy, int purchaseID, ActorRef sectionAgent) {
+    public PurchaseConfirmation(boolean fanWantsToBuy, int purchaseID, ActorRef salesAgentReminder) {
         this.fanWantsToBuy = fanWantsToBuy;
         this.purchaseID = purchaseID;
-        this.sectionAgent = sectionAgent;
+        this.personInvolvedWithPurchase = salesAgentReminder;
     }
 
     public boolean isFanWantsToBuy() {
@@ -21,11 +21,7 @@ public class PurchaseConfirmation {
         return purchaseID;
     }
 
-    public ActorRef getSectionAgent() {
-        return sectionAgent;
-    }
-
-    public void setSectionAgent(ActorRef sectionAgent) {
-        this.sectionAgent = sectionAgent;
+    public ActorRef getPersonInvolvedWithPurchase() {
+        return personInvolvedWithPurchase;
     }
 }

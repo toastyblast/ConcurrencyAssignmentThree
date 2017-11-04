@@ -5,7 +5,7 @@ import akka.actor.ActorRef;
 public class TicketReqResponse {
     private final boolean reservationMade;
     private final int purchaseID;
-    private ActorRef actorRef;
+    private final ActorRef actorRef;
 
     public TicketReqResponse(boolean reservationMade, int purchaseID, ActorRef actorRef) {
         this.reservationMade = reservationMade;
@@ -23,9 +23,5 @@ public class TicketReqResponse {
 
     public ActorRef getActorRef() {
         return actorRef;
-    }
-
-    public void setActorRef(ActorRef actorRef) {
-        this.actorRef = actorRef;
     }
 }

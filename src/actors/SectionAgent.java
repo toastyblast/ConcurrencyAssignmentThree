@@ -26,15 +26,12 @@ public class SectionAgent extends AbstractActor {
         // It matches any messages and tells it that it can't finish the task.
         blockRequests = receiveBuilder()
                 .match(TicketRequest.class, message -> {
-                    log.info("TR MESSAGE SECTION AGENT BLOCK - I told " + getSender() + " to STOP. Tickets left: " + amountOfSpacesAfterConfirmation);
+                    log.info("SECTION AGENT BLOCK - TR - I told " + getSender() + " to STOP. Tickets left: " + amountOfSpacesAfterConfirmation);
                     getSender().tell(new Stop(getSender()),getSelf());
                 })
                 .match(PurchaseConfirmation.class, message -> {
-                    log.info("PC MESSAGE SECTION AGENT BLOCK - I told " + message.getSectionAgent() + " to STOP.");
-                    getSender().tell(new Stop(message.getSectionAgent()), getSelf());
-                })
-                .match(Stop.class, message -> {
-                    /*TODO?: Handling for the stop message.*/
+                    log.info("SECTION AGENT BLOCK - PC - I told " + message.getPersonInvolvedWithPurchase() + " to STOP.");
+                    getSender().tell(new Stop(message.getPersonInvolvedWithPurchase()), getSelf());
                 })
                 .matchAny(o -> log.info("I don't have any tickets left... Leave me alone."))
                 .build();
@@ -44,13 +41,8 @@ public class SectionAgent extends AbstractActor {
         return Props.create(SectionAgent.class, sectionToManage, amountOfSpaces);
     }
 
-    @Override
-    public void postStop() throws Exception {
-        log.info(getSelf() + " has " + amountOfSpaces);
-    }
-
     public void preStart() {
-        log.debug("SECTION AGENT - Starting");
+        log.debug("SECTION " + sectionToManage + " AGENT - Starting");
         //OPTIONAL - Replace the log with any code that should be done as the SectionAgent starts (This could include telling another actor about yourself)
     }
 
@@ -64,7 +56,7 @@ public class SectionAgent extends AbstractActor {
 
 //                    log.debug("SECTION AGENT - GOT FORWARDED MESSAGE FROM: " + getSender(), message.toString());
 
-                    log.info("SECTION AGENT - Got request from " + fanForSalesToSendBackTo + " and I have so many seats left (before latest purchase request): " + amountOfSpaces);
+                    log.info("SECTION AGENT - Got request from " + fanForSalesToSendBackTo + ". Seats left before REQUEST: " + amountOfSpaces);
 
                     if (amountOfSpaces >= requestedTickets) {
                         //Set a "Reservation" (Basically already bought).
@@ -90,7 +82,7 @@ public class SectionAgent extends AbstractActor {
                         getSender().tell(new TicketReqResponse(false, -1, fanForSalesToSendBackTo), getSelf());
                     }
 
-                    log.info("SECTION AGENT - I have so many seats left (after latest purchase request): " + amountOfSpaces + " RESERVED BY: " + fanForSalesToSendBackTo);
+                    log.info("SECTION AGENT - Seats left after REQUEST: " + amountOfSpaces + ". Reserved by: " + fanForSalesToSendBackTo);
                 })
                 .match(PurchaseConfirmation.class, message -> {
                     int amountOfTicketsReserved = sectionPurchaseHistory.get(message.getPurchaseID());
@@ -98,27 +90,29 @@ public class SectionAgent extends AbstractActor {
                     if (!message.isFanWantsToBuy()) {
                         //The fan has decided not to buy the tickets after all, so remove their reservation.
 
-                        log.info("Amount of tickets: " + amountOfTicketsReserved + " NOT RESERVED BY: " + message.getSectionAgent());
+                        log.info("SECTION AGENT - Amount of tickets: " + amountOfTicketsReserved + ". NOT BOUGHT by: " + message.getPersonInvolvedWithPurchase());
 
                         amountOfSpaces += amountOfTicketsReserved;
                     } else {
                         amountOfSpacesAfterConfirmation -= amountOfTicketsReserved;
-                        log.info("Amount of tickets: " + amountOfTicketsReserved + " RESERVED BY: " + message.getSectionAgent() + " Tickets left: " + amountOfSpacesAfterConfirmation);
+                        log.info("SECTION AGENT - Amount of tickets: " + amountOfTicketsReserved + ". BOUGHT by: " + message.getPersonInvolvedWithPurchase() + ". Tickets left: " + amountOfSpacesAfterConfirmation);
 
                         //After all of the RESERVATIONS are confirmed and there are no more spaces left the section
                         //agent becomes, so he can block all of the coming requests.
-                        if (amountOfSpacesAfterConfirmation == 0){
+                        if (amountOfSpacesAfterConfirmation <= 0){
                             getContext().become(blockRequests);
                         }
                     }
 
-                    //And as the fan now have their tickets, we can tell them to stop living.
-                    getSender().tell(new Stop(message.getSectionAgent()), getSelf());
-                })
-                .match(Stop.class, message -> {
-                    /*TODO?: Handling for the stop message.*/
+                    //And as the fan now has confirmation on their tickets, we can tell them to stop living.
+                    getSender().tell(new Stop(message.getPersonInvolvedWithPurchase()), getSelf());
                 })
                 .matchAny(object -> log.info("SECTION AGENT - Received unknown message from " + getSender(), object.toString()))
                 .build();
+    }
+
+    @Override
+    public void postStop() throws Exception {
+        log.info("SECTION AGENT - " + getSelf() + " has " + amountOfSpaces);
     }
 }

@@ -9,6 +9,11 @@ import messages.*;
 
 import java.util.ArrayList;
 
+/**
+ * The Sales Agent serves as a middle man for all communication between Fans and Section Agents. With every message
+ * they include a reference on who to contact once he get a reply from the person he's contacting. The contacted person
+ * always sends back this reference with their reply, as the Section agent needs it to find the original person to call back.
+ */
 public class SalesAgent extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
@@ -54,14 +59,19 @@ public class SalesAgent extends AbstractActor {
                     fan.tell(new TicketReqResponse(isReservation, purchaseID, getSender()), getSelf());
                 })
                 .match(TicketReqOffer.class, message -> {
-                    ActorRef fan = message.getActorRef();
-                    fan.forward(message, getContext());
+                    //Get which Fan to call back from the message.
+                    ActorRef fan = message.getPersonSalesAgentNeedsToContact();
+                    //Get the information to make a copy of this message with a new contact.
+                    int amountOfTicketsOffered = message.getAmountOfTickets();
+                    int purchaseID = message.getPurchaseID();
+                    //Bring message to the Fan, as you now set the section agent to be the one to reconnect with later.
+                    fan.tell(new TicketReqOffer(amountOfTicketsOffered, purchaseID, getSender()), getSelf());
                 })
                 .match(PurchaseConfirmation.class, message -> {
                     //This means the Fan wants to let us and the section agent know if they decided to purchase the
                     // tickets or not. Route this to the section agent so they can handle that.
                     //Get the actor reference and save it.
-                    ActorRef sectionAgent = message.getSectionAgent();
+                    ActorRef sectionAgent = message.getPersonInvolvedWithPurchase();
                     //Get the information for the new message.
                     boolean isConfirmation = message.isFanWantsToBuy();
                     int purchaseID = message.getPurchaseID();
@@ -71,10 +81,9 @@ public class SalesAgent extends AbstractActor {
                 .match(Stop.class, message -> {
                     //This means the section agent told us that the last request has been finished and that the Fan can
                     // be told to stop now, since they have their tickets.
-//                    log.info("Person who should stop " + message.getFan() + " Stopped by: " +getSender());
                     message.getFan().tell(new Stop(null), getSelf());
                 })
-                .matchAny(object -> log.info("SECTION AGENT - Received unknown message from " + getSender(), object.toString()))
+                .matchAny(object -> log.info("SALES AGENT - Unknown message from " + getSender(), object.toString()))
                 .build();
     }
 }

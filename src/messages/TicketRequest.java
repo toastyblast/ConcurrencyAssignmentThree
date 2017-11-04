@@ -1,8 +1,7 @@
 package messages;
 
 public class TicketRequest {
-    private final int numberOfTickets;
-    private final int sectionDesired;
+    private final int numberOfTickets, sectionDesired;
 
     public TicketRequest(int numberOfTickets, int sectionDesired) {
         this.numberOfTickets = numberOfTickets;

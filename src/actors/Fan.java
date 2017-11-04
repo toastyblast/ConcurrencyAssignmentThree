@@ -7,6 +7,16 @@ import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import messages.*;
 
+/**
+ * A Fan is a complex being with only one blissful desire: Buying tickets. Once they got confirmation that they either
+ *  got the tickets, or didn't, they are stopped (Since their objective is done and this simulation does not simulate
+ *  them enjoying their time at the place they bough tickets for as well). The Fan is also bipolar, sometimes deciding
+ *  they didn't want the tickets they requested after all. In case that they get a message from the Sales Agent that
+ *  there are less tickets than they desired, they decided to take the offer of less tickets or not.
+ *
+ *  They only contact the Sales Agent. However, they do include references to Section agents in some messages, as the
+ *  Section Agent needs these to know who to call back.
+ */
 public class Fan extends AbstractActor {
     private static final int MAX_AMOUNT_OF_TICKETS = 4;
     private static final int MIN_AMOUNT_OF_TICKETS = 1;
@@ -14,7 +24,7 @@ public class Fan extends AbstractActor {
     // tickets. Increasing it past 100 guarantees that they buy them. Lowering this value will decrease the chance the
     // fan buys the tickets they desired. Values below 1 will guarantee that the fan never accepts the tickets they wanted.
     private static final int CHANCE_TO_BUY_TICKETS = 70;
-    
+
     //These two integers have influence on the Fan buying an offer with less tickets than they desired, triggered when
     // the section agent doesn't have enough tickets to satisfy the request. These are both percentages.
     //Penalty is how much percentage the user's chance to NOT by the tickets increases per ticket less than what they
@@ -39,7 +49,7 @@ public class Fan extends AbstractActor {
 
     public void preStart() {
         log.debug("FAN - Starting");
-        log.info("FAN - I want to get seats in section " + desiredSection + " and I want to buy " + desiredAmountOfTickets + " tickets.");
+        log.info("FAN - Section desired: " + desiredSection + ". Tickets desired: " + desiredAmountOfTickets);
         ticketAgency.tell(new TicketRequest(desiredAmountOfTickets, desiredSection), getSelf());
     }
 
@@ -55,16 +65,16 @@ public class Fan extends AbstractActor {
 
                         if (decideToBuy <= CHANCE_TO_BUY_TICKETS) {
                             //The user decides that they want to buy the ticket(s) (70% chance)
-                            log.info("FAN - I decided to buy the tickets I requested.");
+                            log.info("FAN - Requested tickets BOUGHT.");
                             getSender().tell(new PurchaseConfirmation(true, myPurchaseID, message.getActorRef()), getSelf());
                         } else {
                             //The user decides that they do NOT want to buy the ticket(s) (30% chance)
-                            log.info("FAN - I decided NOT to buy the tickets I requested.");
+                            log.info("FAN - Requested tickets NOT BOUGHT.");
                             getSender().tell(new PurchaseConfirmation(false, myPurchaseID, message.getActorRef()), getSelf());
                         }
                     } else {
                         //The amount of tickets requested is not available, so stop, as you have nothing more to do.
-                        log.info("FAN - The amount of tickets I requested are not available, so I stop living.");
+                        log.info("FAN - No tickets available. STOP.");
                         getSelf().tell(new Stop(null), getSelf());
                     }
                 })
@@ -85,20 +95,20 @@ public class Fan extends AbstractActor {
 
                     if (decideToBuyOffer <= MAX_CHANCE_TO_TAKE_OFFER) {
                         //The user decides that they want to buy the smaller amount of tickets offered to them.
-                        log.info("FAN - I decided to buy the tickets I was offered. Amount of tickets I was offered: " + amountOfTicketsOffered);
-                        getSender().tell(new PurchaseConfirmation(true, myPurchaseID, getSender()), getSelf());
+                        log.info("FAN - Offered tickets BOUGHT. Desired: " + desiredAmountOfTickets + ". Offered: " + amountOfTicketsOffered);
+                        getSender().tell(new PurchaseConfirmation(true, myPurchaseID, message.getPersonSalesAgentNeedsToContact()), getSelf());
                     } else {
                         //The user decides that they do NOT want to buy the ticket(s) (30% chance)
-                        log.info("FAN - I decided NOT to buy the tickets I was offered. Amount of tickets I was offered: " + amountOfTicketsOffered);
-                        getSender().tell(new PurchaseConfirmation(false, myPurchaseID, getSender()), getSelf());
+                        log.info("FAN - Offered tickets NOT BOUGHT. Desired: " + desiredAmountOfTickets + ". Offered: " + amountOfTicketsOffered);
+                        getSender().tell(new PurchaseConfirmation(false, myPurchaseID, message.getPersonSalesAgentNeedsToContact()), getSelf());
                     }
                 })
                 .match(Stop.class, message -> {
-                    log.info("FAN - I was told to stop by " + getSender(), message.toString());
+                    log.info("FAN - Told to STOP by " + getSender(), message.toString());
 
                     getContext().stop(getSelf());
                 })
-                .matchAny(object -> log.info("FAN - Received unknown message from " + getSender(), object.toString()))
+                .matchAny(object -> log.info("FAN - UNKNOWN message from " + getSender(), object.toString()))
                 .build();
     }
 }

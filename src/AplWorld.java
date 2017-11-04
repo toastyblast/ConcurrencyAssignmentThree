@@ -27,7 +27,7 @@ public class AplWorld {
 
         //Create the section agents...
         ArrayList<ActorRef> sectionAgents = new ArrayList<>();
-        for (int section = 1; section < AMOUNT_OF_SECTIONS; section++) {
+        for (int section = 1; section < (AMOUNT_OF_SECTIONS + 1); section++) {
             ActorRef sectionAgent = system.actorOf(SectionAgent.prop(section, AMOUNT_OF_SPACES), "SecAg-" + section);
 
             sectionAgents.add(sectionAgent);
@@ -38,12 +38,10 @@ public class AplWorld {
         ActorRef ticketAgency = system.actorOf(new SmallestMailboxPool(MIN_AMOUNT_OF_SALES_AGENTS).withResizer(resizer).props(SalesAgent.prop(sectionAgents)), "ticketAgency");
 
         //Create the fans...
-//        List<ActorRef> fans = new ArrayList<>();
         for (int i = 1; i < AMOUNT_OF_FANS; i++) {
             int sectionToDesire = (int) (Math.random() * AMOUNT_OF_SECTIONS) + 1;
 
             ActorRef fan = system.actorOf(Fan.prop(sectionToDesire, ticketAgency), "Fan-" + i);
-//            fans.add(fan);
         }
 
         //TODO - OPTIONAl: Replace this try/catch with a future loop.
@@ -54,6 +52,4 @@ public class AplWorld {
         //Always terminate the system after it's done! Actors stay alive, otherwise.
         system.terminate();
     }
-
-    //Misc. methods...
 }
