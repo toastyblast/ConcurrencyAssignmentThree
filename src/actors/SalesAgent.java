@@ -23,15 +23,32 @@ public class SalesAgent extends AbstractActor {
         this.sectionAgents = sectionAgents;
     }
 
+    /**
+     * Special type of constructor used by AKKA. Shows the user of the program what the Actor needs, discouraging them
+     * from using normal constructors, including an empty one.
+     *
+     * @param sectionAgents is a list of all the Section Agents, since the Sales Agent needs to contact one of these for
+     *                      each ticket request from a Fan.
+     * @return the creation of the normal constructor of the SalesAgent Actor.
+     */
     public static Props prop(ArrayList<ActorRef> sectionAgents) {
         return Props.create(SalesAgent.class, sectionAgents);
     }
 
+    /**
+     * Method that is triggered right at the start of when the Actor is made. Can be used to do any kinds of preparation.
+     */
     public void preStart() {
         log.debug("SALES AGENT - Starting");
-        //OPTIONAL - Replace the log with any code that should be done as the SalesAgent starts (This could include telling another actor about yourself)
+        log.info("SALES AGENT - STARTED");
     }
 
+    /**
+     * Method that is triggered once the Actor receives a mail from their mailbox. It handles all messages known to it
+     * in the appropriate way.
+     *
+     * @return the match responses from this Actor to the message received by it.
+     */
     @Override
     public Receive createReceive() {
         return receiveBuilder()
@@ -85,5 +102,13 @@ public class SalesAgent extends AbstractActor {
                 })
                 .matchAny(object -> log.info("SALES AGENT - Unknown message from " + getSender(), object.toString()))
                 .build();
+    }
+
+    /**
+     * Method that is performed right when the Sales Agent is stopped.
+     */
+    @Override
+    public void postStop() throws Exception {
+        log.info("SALES AGENT - STOPPED");
     }
 }

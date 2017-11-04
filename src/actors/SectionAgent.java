@@ -9,12 +9,21 @@ import messages.*;
 
 import java.util.ArrayList;
 
+/**
+ * Section agent that keeps track of their own section and the seats taken from it, or returned if a purchase
+ * has been cancelled.
+ * <p>
+ * If the Section Agent has no seats left anymore after the purchase that took the last seats has been confirmed,
+ * it goes into a blocked mode. Here it blocks all further messages sent to it, as there's nothing left to do for them
+ * anymore.
+ */
 public class SectionAgent extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
     private final int sectionToManage;
     private int amountOfSpaces, amountOfSpacesAfterConfirmation;
     private ArrayList<Integer> sectionPurchaseHistory = new ArrayList<>();
 
+    //Special kind of behaviour the Section Agent can become when they do not have any spaces left.
     private Receive blockRequests;
 
     private SectionAgent(int sectionToManage, int amountOfSpaces) {
@@ -27,7 +36,7 @@ public class SectionAgent extends AbstractActor {
         blockRequests = receiveBuilder()
                 .match(TicketRequest.class, message -> {
                     log.info("SECTION AGENT BLOCK - TR - I told " + getSender() + " to STOP. Tickets left: " + amountOfSpacesAfterConfirmation);
-                    getSender().tell(new Stop(getSender()),getSelf());
+                    getSender().tell(new Stop(getSender()), getSelf());
                 })
                 .match(PurchaseConfirmation.class, message -> {
                     log.info("SECTION AGENT BLOCK - PC - I told " + message.getPersonInvolvedWithPurchase() + " to STOP.");
@@ -37,6 +46,14 @@ public class SectionAgent extends AbstractActor {
                 .build();
     }
 
+    /**
+     * Special type of constructor used by AKKA. Shows the user of the program what the Actor needs, discouraging them
+     * from using normal constructors, including an empty one.
+     *
+     * @param sectionToManage is the section this Section Agent is responsible for.
+     * @param amountOfSpaces is the amount of tickets available for this section.
+     * @return the creation of the normal constructor of the SectionAgent Actor.
+     */
     public static Props prop(int sectionToManage, int amountOfSpaces) {
         return Props.create(SectionAgent.class, sectionToManage, amountOfSpaces);
     }
@@ -46,6 +63,12 @@ public class SectionAgent extends AbstractActor {
         //OPTIONAL - Replace the log with any code that should be done as the SectionAgent starts (This could include telling another actor about yourself)
     }
 
+    /**
+     * Method that is triggered once the Actor receives a mail from their mailbox. It handles all messages known to it
+     * in the appropriate way.
+     *
+     * @return the match responses from this Actor to the message received by it.
+     */
     @Override
     public Receive createReceive() {
         return receiveBuilder()
@@ -53,8 +76,6 @@ public class SectionAgent extends AbstractActor {
                     int requestedTickets = message.getNumberOfTickets();
                     //The reference to the fan, keep it so the sales agent can know where to return the message.
                     ActorRef fanForSalesToSendBackTo = getSender();
-
-//                    log.debug("SECTION AGENT - GOT FORWARDED MESSAGE FROM: " + getSender(), message.toString());
 
                     log.info("SECTION AGENT - Got request from " + fanForSalesToSendBackTo + ". Seats left before REQUEST: " + amountOfSpaces);
 
@@ -99,7 +120,7 @@ public class SectionAgent extends AbstractActor {
 
                         //After all of the RESERVATIONS are confirmed and there are no more spaces left the section
                         //agent becomes, so he can block all of the coming requests.
-                        if (amountOfSpacesAfterConfirmation <= 0){
+                        if (amountOfSpacesAfterConfirmation <= 0) {
                             getContext().become(blockRequests);
                         }
                     }
@@ -111,8 +132,11 @@ public class SectionAgent extends AbstractActor {
                 .build();
     }
 
+    /**
+     * Method that is performed right when the Section Agent is stopped.
+     */
     @Override
     public void postStop() throws Exception {
-        log.info("SECTION AGENT - " + getSelf() + " has " + amountOfSpaces);
+        log.info("SECTION AGENT - ON STOP. Has " + amountOfSpaces + " seats left.");
     }
 }

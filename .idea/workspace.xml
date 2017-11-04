@@ -7,10 +7,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actors/Fan.java" afterPath="$PROJECT_DIR$/src/actors/Fan.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actors/SalesAgent.java" afterPath="$PROJECT_DIR$/src/actors/SalesAgent.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actors/SectionAgent.java" afterPath="$PROJECT_DIR$/src/actors/SectionAgent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/messages/PurchaseConfirmation.java" afterPath="$PROJECT_DIR$/src/messages/PurchaseConfirmation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/messages/TicketReqOffer.java" afterPath="$PROJECT_DIR$/src/messages/TicketReqOffer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/messages/TicketReqResponse.java" afterPath="$PROJECT_DIR$/src/messages/TicketReqResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/messages/TicketRequest.java" afterPath="$PROJECT_DIR$/src/messages/TicketRequest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,8 +21,8 @@
       <file leaf-file-name="AplWorld.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AplWorld.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="25" column="61" lean-forward="true" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
+            <state relative-caret-position="204">
+              <caret line="12" column="3" lean-forward="false" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -35,8 +31,8 @@
       <file leaf-file-name="Fan.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/actors/Fan.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1564">
-              <caret line="92" column="0" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+            <state relative-caret-position="901">
+              <caret line="53" column="47" lean-forward="false" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -45,8 +41,8 @@
       <file leaf-file-name="SalesAgent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/actors/SalesAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="38" column="71" lean-forward="false" selection-start-line="38" selection-start-column="71" selection-end-line="38" selection-end-column="71" />
+            <state relative-caret-position="-687">
+              <caret line="30" column="44" lean-forward="false" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -55,10 +51,10 @@
       <file leaf-file-name="SectionAgent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/actors/SectionAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="44" column="48" lean-forward="false" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
+            <state relative-caret-position="374">
+              <caret line="22" column="64" lean-forward="true" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
               <folding>
-                <marker date="1509808055813" expanded="true" signature="6048:6298" ph="{...}" />
+                <marker date="1509809766959" expanded="true" signature="7134:7384" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -84,6 +80,10 @@
       <find>Fan-15</find>
       <find>Fan-16</find>
       <find>Fan-10</find>
+      <find>Sales</find>
+      <find>sales</find>
+      <find>SALES</find>
+      <find>SALES AGENT</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -106,13 +106,13 @@
         <option value="$PROJECT_DIR$/src/application.conf" />
         <option value="$PROJECT_DIR$/src/messages/Stop.java" />
         <option value="$PROJECT_DIR$/src/messages/TicketReqOffer.java" />
-        <option value="$PROJECT_DIR$/src/AplWorld.java" />
         <option value="$PROJECT_DIR$/src/messages/TicketRequest.java" />
         <option value="$PROJECT_DIR$/src/messages/TicketReqResponse.java" />
-        <option value="$PROJECT_DIR$/src/actors/Fan.java" />
         <option value="$PROJECT_DIR$/src/messages/PurchaseConfirmation.java" />
+        <option value="$PROJECT_DIR$/src/actors/Fan.java" />
         <option value="$PROJECT_DIR$/src/actors/SalesAgent.java" />
         <option value="$PROJECT_DIR$/src/actors/SectionAgent.java" />
+        <option value="$PROJECT_DIR$/src/AplWorld.java" />
       </list>
     </option>
   </component>
@@ -337,7 +337,7 @@
       <workItem from="1509647479865" duration="3259000" />
       <workItem from="1509656915020" duration="1815000" />
       <workItem from="1509705145139" duration="2484000" />
-      <workItem from="1509800706023" duration="7293000" />
+      <workItem from="1509800706023" duration="9019000" />
     </task>
     <task id="LOCAL-00001" summary="Base first commit">
       <created>1508244351124</created>
@@ -472,11 +472,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509808060852</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Fixes everywhere, from the way some checks were done to missing final statements">
+      <created>1509808081285</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1509808081285</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39550000" />
+    <option name="totallyTimeSpent" value="41276000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -591,7 +598,8 @@
     <MESSAGE value="Little message change on section agent" />
     <MESSAGE value="Added offer system for the section agent to the fan." />
     <MESSAGE value="Merge branch 'master' of https://github.com/toastyblast/ConcurrencyAssignmentThree&#10;&#10;# Conflicts:&#10;#&#9;src/actors/SalesAgent.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/toastyblast/ConcurrencyAssignmentThree&#10;&#10;# Conflicts:&#10;#&#9;src/actors/SalesAgent.java" />
+    <MESSAGE value="Fixes everywhere, from the way some checks were done to missing final statements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes everywhere, from the way some checks were done to missing final statements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -619,7 +627,7 @@
         <state relative-caret-position="731">
           <caret line="43" column="87" lean-forward="false" selection-start-line="43" selection-start-column="87" selection-end-line="43" selection-end-column="87" />
           <folding>
-            <marker date="1509808055813" expanded="true" signature="6048:6298" ph="{...}" />
+            <marker date="1509809766959" expanded="true" signature="7134:7384" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -645,7 +653,7 @@
         <state relative-caret-position="680">
           <caret line="40" column="87" lean-forward="false" selection-start-line="40" selection-start-column="87" selection-end-line="40" selection-end-column="87" />
           <folding>
-            <marker date="1509808055813" expanded="true" signature="6048:6298" ph="{...}" />
+            <marker date="1509809766959" expanded="true" signature="7134:7384" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -687,7 +695,7 @@
         <state relative-caret-position="680">
           <caret line="40" column="87" lean-forward="false" selection-start-line="40" selection-start-column="87" selection-end-line="40" selection-end-column="87" />
           <folding>
-            <marker date="1509808055813" expanded="true" signature="6048:6298" ph="{...}" />
+            <marker date="1509809766959" expanded="true" signature="7134:7384" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -721,7 +729,7 @@
         <state relative-caret-position="680">
           <caret line="40" column="87" lean-forward="false" selection-start-line="40" selection-start-column="87" selection-end-line="40" selection-end-column="87" />
           <folding>
-            <marker date="1509808055813" expanded="true" signature="6048:6298" ph="{...}" />
+            <marker date="1509809766959" expanded="true" signature="7134:7384" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -755,7 +763,7 @@
         <state relative-caret-position="153">
           <caret line="9" column="78" lean-forward="false" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
           <folding>
-            <marker date="1509808055813" expanded="true" signature="6048:6298" ph="{...}" />
+            <marker date="1509809766959" expanded="true" signature="7134:7384" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -789,7 +797,7 @@
         <state relative-caret-position="153">
           <caret line="9" column="78" lean-forward="false" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
           <folding>
-            <marker date="1509808055813" expanded="true" signature="6048:6298" ph="{...}" />
+            <marker date="1509809766959" expanded="true" signature="7134:7384" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -823,7 +831,7 @@
         <state relative-caret-position="153">
           <caret line="9" column="78" lean-forward="false" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
           <folding>
-            <marker date="1509808055813" expanded="true" signature="6048:6298" ph="{...}" />
+            <marker date="1509809766959" expanded="true" signature="7134:7384" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -858,7 +866,7 @@
         <state relative-caret-position="153">
           <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
           <folding>
-            <marker date="1509808055813" expanded="true" signature="6048:6298" ph="{...}" />
+            <marker date="1509809766959" expanded="true" signature="7134:7384" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -893,7 +901,7 @@
         <state relative-caret-position="153">
           <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
           <folding>
-            <marker date="1509808055813" expanded="true" signature="6048:6298" ph="{...}" />
+            <marker date="1509809766959" expanded="true" signature="7134:7384" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -955,36 +963,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AplWorld.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="25" column="61" lean-forward="true" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/actors/SectionAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="48" lean-forward="false" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
+        <state relative-caret-position="374">
+          <caret line="22" column="64" lean-forward="true" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
           <folding>
-            <marker date="1509808055813" expanded="true" signature="6048:6298" ph="{...}" />
+            <marker date="1509809766959" expanded="true" signature="7134:7384" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/actors/SalesAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="38" column="71" lean-forward="false" selection-start-line="38" selection-start-column="71" selection-end-line="38" selection-end-column="71" />
+        <state relative-caret-position="-687">
+          <caret line="30" column="44" lean-forward="false" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AplWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="3" lean-forward="false" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/actors/Fan.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1564">
-          <caret line="92" column="0" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+        <state relative-caret-position="901">
+          <caret line="53" column="47" lean-forward="false" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
           <folding />
         </state>
       </provider>

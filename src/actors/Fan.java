@@ -9,13 +9,13 @@ import messages.*;
 
 /**
  * A Fan is a complex being with only one blissful desire: Buying tickets. Once they got confirmation that they either
- *  got the tickets, or didn't, they are stopped (Since their objective is done and this simulation does not simulate
- *  them enjoying their time at the place they bough tickets for as well). The Fan is also bipolar, sometimes deciding
- *  they didn't want the tickets they requested after all. In case that they get a message from the Sales Agent that
- *  there are less tickets than they desired, they decided to take the offer of less tickets or not.
- *
- *  They only contact the Sales Agent. However, they do include references to Section agents in some messages, as the
- *  Section Agent needs these to know who to call back.
+ * got the tickets, or didn't, they are stopped (Since their objective is done and this simulation does not simulate
+ * them enjoying their time at the place they bough tickets for as well). The Fan is also bipolar, sometimes deciding
+ * they didn't want the tickets they requested after all. In case that they get a message from the Sales Agent that
+ * there are less tickets than they desired, they decided to take the offer of less tickets or not.
+ * <p>
+ * They only contact the Sales Agent. However, they do include references to Section agents in some messages, as the
+ * Section Agent needs these to know who to call back.
  */
 public class Fan extends AbstractActor {
     private static final int MAX_AMOUNT_OF_TICKETS = 4;
@@ -43,22 +43,38 @@ public class Fan extends AbstractActor {
         this.ticketAgency = ticketAgency;
     }
 
+    /**
+     * Special type of constructor used by AKKA. Shows the user of the program what the Actor needs, discouraging them
+     * from using normal constructors, including an empty one.
+     *
+     * @param desiredSection is the section that the Fan wants to get tickets from
+     * @param ticketAgency is the "Phone number" (aka a reference) to the Ticket Agency, which the Fan contacts.
+     * @return the creation of the normal constructor of the Fan Actor.
+     */
     public static Props prop(int desiredSection, ActorRef ticketAgency) {
         return Props.create(Fan.class, desiredSection, ticketAgency);
     }
 
+    /**
+     * Method that is triggered right at the start of when the Actor is made. Can be used to do any kinds of preparation.
+     * In this case, the Fan sends their request to the Sales Agent to start the process of getting tickets.
+     */
     public void preStart() {
         log.debug("FAN - Starting");
         log.info("FAN - Section desired: " + desiredSection + ". Tickets desired: " + desiredAmountOfTickets);
         ticketAgency.tell(new TicketRequest(desiredAmountOfTickets, desiredSection), getSelf());
     }
 
+    /**
+     * Method that is triggered once the Actor receives a mail from their mailbox. It handles all messages known to it
+     * in the appropriate way.
+     *
+     * @return the match responses from this Actor to the message received by it.
+     */
     @Override
     public Receive createReceive() {
         return receiveBuilder()
                 .match(TicketReqResponse.class, message -> {
-//                    log.debug("FAN - GOT RESPONSE MESSAGE FROM: " + getSender(), message.toString());
-
                     if (message.isReservationMade()) {
                         int decideToBuy = (int) (Math.random() * 100) + 1;
                         int myPurchaseID = message.getPurchaseID();
